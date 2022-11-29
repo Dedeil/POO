@@ -18,4 +18,14 @@ public class FrelonAsiatique extends Frelon{
 		super();
 	}
 
+	public void rencontrer(Agent a) {
+		if (a instanceof FrelonEuropeen) {
+			if (a.isFaim()) {
+				this.etat = Etat.Mourant;
+			}
+			else {
+				this.etat = Etat.EnDetresse;
+			}
+		}
+	}
 }

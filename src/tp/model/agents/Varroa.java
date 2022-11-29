@@ -17,5 +17,22 @@ public class Varroa extends Animal{
 	public Varroa() {
 		super();
 	}
+	
+	@Override
+	public void seDeplacer() {
+		if (this.hebergeur == null) {
+			super.seDeplacer();
+		}
+		else {
+			this.coord = this.hebergeur.getCoord();	
+		}
+	}
 
+	public void rencontrer(Agent a) {
+		if (a instanceof Abeille) {
+			this.setHebergeur(a);
+			Abeille abeille = (Abeille) a;
+			abeille.accueillir(this);
+		}
+	}
 }

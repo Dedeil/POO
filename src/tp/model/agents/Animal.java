@@ -8,10 +8,8 @@ import java.awt.Point;
  *
  */
 public class Animal extends Agent{
-	// état de santé de l'animal
-	private Etat etat=Etat.Normal;
-	private Sexe sexe;
-	private Agent hebergeur;
+	protected Agent hebergeur;
+	protected Sexe sexe;
 	
 	/* 
 	 * constructeurs 

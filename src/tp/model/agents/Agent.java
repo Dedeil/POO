@@ -13,6 +13,7 @@ public class Agent {
 	protected Point coord;
 	/** état de santé de l'animal */
 	protected Etat etat = Etat.Normal;
+	protected boolean faim = false;
 	/*
 	 * @return un identifiant entier unique d'animal
 	 */
@@ -48,5 +49,24 @@ public class Agent {
 	public Agent() {
 		super();
 	}
+	
+	private void seNourrir() {
+		;
+	}
+	
+	final void vivre() {
+		this.vieillir();
+		if (this instanceof Animal) {
+			Animal a = (Animal) this;
+			a.seDeplacer();
+		}
+		this.seNourrir();
+		//TODO this.majDonnees
+	}
+
+	public boolean isFaim() {
+		return faim;
+	}
+	
 
 }
