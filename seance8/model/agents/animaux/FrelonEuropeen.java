@@ -8,6 +8,7 @@ public class FrelonEuropeen extends Frelon {
 	
 	public FrelonEuropeen(Sexe s, Point p) {
 		super(s, p);
+		this.proies.add(FrelonAsiatique.class);
 	}
 
 	/* inutile avec la liste de proies à partir des collections

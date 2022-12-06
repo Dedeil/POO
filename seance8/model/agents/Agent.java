@@ -32,6 +32,9 @@ public abstract class Agent {//implements Cloneable, Comparable<Agent>
 	 */
 	protected boolean faim = false;
 	
+	public void setFaim() { this.faim = true; }
+	public boolean isFaim() { return faim; }
+
 	/**
 	 * crée un agent d'age 0, avec un id unique à la position coord
 	 * @param coord position de l'agent

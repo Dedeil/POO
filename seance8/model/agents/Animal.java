@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
-//pour l'exemple détaillé de aggraverEtat
+//pour l'exemple detaille de aggraverEtat
 import java.util.List;
 import java.util.ListIterator;
 
@@ -13,22 +13,22 @@ import model.comportements.Deplacable;
 import model.comportements.Hebergeur;
 
 /**
- * Cette classe modélise un Animal dans la simulation
+ * Cette classe modelise un Animal dans la simulation
  * @author bruno
  *
  */
 /* 
- * abstract à partir du TP2 + déplacement des méthodes/attributs du TP1 concernant les agents dans la classe agent:
+ * abstract a� partir du TP2 + deplacement des methodes/attributs du TP1 concernant les agents dans la classe agent:
  * attributs de classe 
 	private static int currentId = 0;
 	
 	attributs d'instance:
 	private int id;
 	protected int age;
-	protected PointPositif coord; //question subsdiaire du tp2 + solution présentée au cours 4
+	protected PointPositif coord; //question subsdiaire du tp2 + solution presentee au cours 4
 	//protected Point coord;
 	 
-	méthodes:
+	methodes:
 	public Agent(Point coord)
 	public Agent()
 	
@@ -44,7 +44,7 @@ public abstract class Animal extends Agent implements Deplacable {
 	 * SeDeplacer: soit abstract, soit encore mieux faire une interface Deplacable
 	 */
 	
-	/** état de santé de l'animal */
+	/** etat de sante de l'animal */
 	private Etat etat=Etat.Normal;
 	/** sexe de l'animal */
 	private Sexe sexe;
@@ -62,18 +62,18 @@ public abstract class Animal extends Agent implements Deplacable {
 	public Animal(Sexe sexe) {
 		this(sexe,new Point(0,0));
 		//TODO
-		/* crée un animal avec le sexe passé en paramètre, à la position (0;0), d'âge 0 et lui attribue un id unique
-		 * une bonne manière de faire 
-		 * en utilisant ce qui existe déjà, une moins bonne
+		/* cree un animal avec le sexe passe en parama�tre, a� la position (0;0), d'a�ge 0 et lui attribue un id unique
+		 * une bonne mania�re de faire 
+		 * en utilisant ce qui existe deja�, une moins bonne
 		 */
 	}
 	
 	public Animal() {
 		this(Sexe.Femelle);
 		//TODO
-		/* crée un animal de sexe femelle, à la position (0;0), d'âge 0 et lui attribue un id unique
-		 * une bonne manière de faire 
-		 * en utilisant ce qui existe déjà, une moins bonne
+		/* cree un animal de sexe femelle, a� la position (0;0), d'a�ge 0 et lui attribue un id unique
+		 * une bonne mania�re de faire 
+		 * en utilisant ce qui existe deja�, une moins bonne
 		 */
 	}
 	
@@ -86,16 +86,17 @@ public abstract class Animal extends Agent implements Deplacable {
 	
 	public Etat getNiveauSante() {return etat;}
 	/**
-	 * protected, car seul l'animal doit pouvoir changer son niveau de santé
+	 * protected, car seul l'animal doit pouvoir changer son niveau de sante
 	 * @return
 	 */
 	protected void setNiveauSante(Etat e) {etat = e;}
-	/*
-	 * (non-Javadoc)
-	 * @see complet.model.agents.Agent#toString()
-	 */
+
 	public String toString() {
-		//bien penser à réutiliser l'existant de Agent avec le super.toString()
+		//bien penser a� reutiliser l'existant de Agent avec le super.toString()
+		/*
+		 * (non-Javadoc)
+		 * @see complet.model.agents.Agent#toString()
+		 */
 		return super.toString()+", "+sexe;
 	}
 	
@@ -107,7 +108,7 @@ public abstract class Animal extends Agent implements Deplacable {
 	 * @see complet.model.comportements.Deplacable#seDeplacer()
 	 */
 	/**
-	 * déplacement aléatoire avec -1<=dx<=1 et  -1<=dy<=1
+	 * deplacement aleatoire avec -1<=dx<=1 et  -1<=dy<=1
 	 * @see model.comportements.Deplacable#seDeplacer()
 	 */
 	public void seDeplacer() {
@@ -117,7 +118,7 @@ public abstract class Animal extends Agent implements Deplacable {
 	}
 	
 	/**
-	 * condition d'installation d'un animal dans un hébergeur
+	 * condition d'installation d'un animal dans un hebergeur
 	 * @param h
 	 * @return
 	 */
@@ -131,7 +132,7 @@ public abstract class Animal extends Agent implements Deplacable {
 	}
 	
 	public final void aggraverEtat() {
-		/* détail sur plusieurs lignes de:
+		/* detail sur plusieurs lignes de:
 		 * 	LinkedList<Etat> liste = new LinkedList<Etat>(Arrays.asList(Etat.values()));
 
 		Etat[] tableauEtat = Etat.values();
@@ -140,7 +141,7 @@ public abstract class Animal extends Agent implements Deplacable {
 		*/
 		LinkedList<Etat> liste = new LinkedList<Etat>(Arrays.asList(Etat.values()));
 		// ArrayList<Etat> liste = new ArrayList<Etat>(Arrays.asList(Etat.values()));
-		/* détail de
+		/* detail de
 		 * Iterator<Etat> it = liste.listIterator(liste.indexOf(etat));
 		 
 		int indexEtatActuel = liste.indexOf(this.etat); (inutile avec l'algo suivant)
@@ -151,12 +152,16 @@ public abstract class Animal extends Agent implements Deplacable {
 		}
 		*/
 		Iterator<Etat> it = liste.listIterator(liste.indexOf(etat));
-		if(it.hasNext()) {etat = it.next();}	
+		etat = it.next();
+		if(it.hasNext())
+			etat = it.next();
 	}
 	
 	public final void ameliorerEtat() {
-		Iterator<Etat> it = new LinkedList<Etat>(Arrays.asList(Etat.values())).descendingIterator();
-		if(it.hasNext()) {etat = it.next();}
+		LinkedList<Etat> liste = new LinkedList<Etat>(Arrays.asList(Etat.values()));
+		ListIterator<Etat> it = liste.listIterator(liste.indexOf(etat));
+		if(it.hasPrevious())
+			etat = it.previous();
 	}
 
 

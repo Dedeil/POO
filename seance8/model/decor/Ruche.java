@@ -2,55 +2,60 @@ package model.decor;
 
 import java.awt.Point;
 import java.util.HashSet;
+import java.util.Set;
 
 import model.agents.Animal;
-import model.agents.Sexe;
 import model.agents.animaux.AbeilleDomestique;
+import model.agents.animaux.FrelonAsiatique;
+import model.agents.animaux.FrelonEuropeen;
 import model.comportements.Hebergeur;
 
 public class Ruche extends Decor implements Hebergeur{
 	
-	/**
-	 * Liste des abeilles de la ruche 
-	 */
-	//private TODO population;
-	/**
-	 * constante taille maximale de la ruche
-	 */
+	// Set des abeilles de la ruche 
+	private Set<Animal> population = new HashSet<Animal>();
+	// Set des animaux acceptables dans la ruche
+	private Set<Class<? extends Animal>> acceptable = new HashSet<Class<? extends Animal>>();
+	// Constante taille maximale de la ruche
 	private static int populationMax = 1000;
 	
-	public Ruche(Point p) {
+	public Ruche(Point p) { 
 		super(p);
-		//population = new ... TODO;
+		this.acceptable.add(AbeilleDomestique.class);
+		//this.acceptable.add(FrelonAsiatique.class);
+		//this.acceptable.add(FrelonEuropeen.class);
 	}
 
 	@Override
 	public boolean peutAccueillir(Animal a) {
-		return a instanceof AbeilleDomestique; /*&& 
-				&& //population ok
-				//l'abeille n'appartient pas déjà à la ruche
-				 */
+		//TODO: Penser a mettre en private
+		if (this.acceptable.contains(a.getClass()) && this.population.size() < populationMax) {
+			System.out.println("Peut etre accueuillit");
+			return true;
+		}
+		System.out.println("Ne peut etre accueuillit");
+		return false;
 	}
 
 	@Override
 	public boolean accueillir(Animal a) {
-		boolean ret = false;
 		if(peutAccueillir(a)) {
-			/* Ne pas faire ça ici: c'est à l'animal de mettre à jour ses attributs
+			/* 
+			 * Ne pas faire ca ici: c'est a l'animal de mettre a jour ses attributs
 			 * a.setHebergeur(this);
 			 */
-			//TODO ajouter a à la population
-			ret=true;
+			this.population.add(a);
+			return true;
 		}
-		return ret;
+		return false;
 	}
 	
+	@Override
 	public String toString() {
-		String ret ="TODO";
-		/*
-		 * "\t" code une tabulation dans une chaine de caractères
-		 * "\n" un saut de ligne 
-		 */
+		String ret ="Ruche (" + this.getCoord().getX() + ", " + this.getCoord().getY() + ") population: "
+					+ Integer.toString(this.population.size()) + " abeilles" ;
+		for (int i = 0; i < this.population.size(); i++)
+			ret += "*" + this.population;
 		return ret;
 	}
 	
