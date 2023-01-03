@@ -1,7 +1,5 @@
 package model.agents.animaux;
 
-import model.agents.animaux.Abeille;
-
 import java.awt.Point;
 
 import model.agents.Sexe;
@@ -20,7 +18,7 @@ public class Varroa extends Animal {
 		
 	@Override
 	public void rencontrer(Agent a) {
-		//code à trouver en section 6
+		//code a trouver en section 6
 		if(a instanceof Abeille) {
 			Abeille candidateAuParasitage = (Abeille) a;
 			this.sInstaller(candidateAuParasitage);
@@ -39,9 +37,15 @@ public class Varroa extends Animal {
 		
 	}
 	/**
-	 * si le Varroa a un hébergeur, il se déplace avec l'abeille
+	 * si le Varroa a un hebergeur, il se deplace avec l'abeille
 	 */
 	public void seDeplacer() {
 		//TODO
+	}
+
+	@Override
+	public int compareTo(Agent o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

@@ -21,21 +21,13 @@ import model.agents.vegetaux.Fleur;
 import model.decor.Ruche;
 
 public class Monde {
-	/**
-	 * population d'agents dans le monde
-	 */
+	//population d'agents dans le monde
 	private Set<Agent>agents;
-	/**
-	 * map de probabilité pour trouver un agent
-	 */
+	//map de probabilite pour trouver un agent
 	private static final Map<Integer,Agent> proba= Monde.probaAgent();
-	/**
-	 * constante: largeur du monde
-	 */
+	//constante: largeur du monde
 	private static int LARGEUR = 30;
-	/**
-	 * constante: longueur du monde
-	 */
+	//constante: longueur du monde
 	private static int LONGUEUR = 20;
 	
 	/**
@@ -48,7 +40,7 @@ public class Monde {
 	}
 	
 	/**
-	 * Méthode utilitaire statistique pour produire la table de proba
+	 * Methode utilitaire statistique pour produire la table de proba
 	 * d'apparition d'un agent
 	 * @return
 	 */
@@ -69,15 +61,13 @@ public class Monde {
 	}
 	
 	/**
-	 * fabrication aléatoire d'un Agent par tirage dans la Map
-	 * et positionnement aléatoire
+	 * fabrication aleatoire d'un Agent par tirage dans la Map
+	 * et positionnement aleatoire
 	 * @param alea
 	 * @return
 	 */
 	private static Agent tirage(int alea) {
-		/*
-		 * NE PAS TOUCHER!
-		 */
+		//NE PAS TOUCHER!
 		Agent agent=null;
 		if(alea<100 && alea>=0) {
 			boolean trouve = false;
@@ -93,7 +83,7 @@ public class Monde {
 		else {
 			agent = new Fleur(new Point(0,0));
 		}
-		//positionnement aléatoire entre Longueur et Largeur
+		//positionnement aleatoire entre Longueur et Largeur
 		int aleaX = (int)(Math.random()*LONGUEUR);
 		int aleaY = (int)(Math.random()*LONGUEUR);
 		agent.setCoord(aleaX, aleaY);
@@ -101,9 +91,7 @@ public class Monde {
 	}
 
 	private TreeSet<Agent> generateAgents(int nbAgents) {
-			/*
-			 * NE PAS TOUCHER!
-			 */
+		//NE PAS TOUCHER!
 		TreeSet<Agent> ts = new TreeSet<Agent>();
 		for(int i=0;i<nbAgents;i++) {
 			int alea = (int)(Math.random()*100);
@@ -115,10 +103,10 @@ public class Monde {
 		return ts;
 	}
 	/**
-	 * à supprimer dès la partie deux lorsqu'il devient possible de
+	 * a supprimer des la partie deux lorsqu'il devient possible de
 	 * cloner les agents
-	 * place toutes les abeilles dans la même ruche
-	 * les arbres ont tous la même taille
+	 * place toutes les abeilles dans la meme ruche
+	 * les arbres ont tous la meme taille
 	 * ne respecte pas les bonnes pratiques (switch case sur le type) 
 	 * @param tirage
 	 * @return
@@ -165,26 +153,32 @@ public class Monde {
 		String ret="";
 		ret+="******************************\n";
 		ret+="Le monde contient "+agents.size()+" agents:\n";
-		/*
-		 * TODO
-		Set<Agent> coordSet = new TreeSet<Agent>(new CoordComparator());//TODO
+		Set<Agent> coordSet = new TreeSet<Agent>(new CoordComparator());
 		coordSet.addAll(agents);
-		*/
 		for(Agent a:agents) {
 			ret+="\t"+a+"\n";
 		}
 		return ret;
 	}
 
-	/**
-	 * génère un cycle de vie dans le monde
-	 */
 	public void cycle() {
-		/*
-		 * TODO appeler la méthode cycle sur tous les agents		
+		/* 
+		 * Genere un cycle de vie dans le monde
+		 * TODO appeler la methode cycle sur tous les agents
 		 */
+		
 	}
 	
-	
-
+	private Set<Agent> gererRencontre(Agent a) {
+		Set<Agent> liste = null;
+		Iterator<Agent> it = this.agents.iterator();
+		short rayon = 10;
+		while (it.hasNext()) {
+			Agent autreAgent = it.next();
+			if (Math.abs(autreAgent.getCoord().x - a.getCoord().x) < rayon && Math.abs(autreAgent.getCoord().y - a.getCoord().y) < rayon) {
+				liste.add(autreAgent);
+			}
+		}
+		return liste;
+	}
 }

@@ -1,10 +1,15 @@
 package model.decor;
 
 import java.awt.Point;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.ListIterator;
 import java.util.Set;
 
 import model.agents.Animal;
+import model.agents.Etat;
 import model.agents.animaux.AbeilleDomestique;
 import model.agents.animaux.FrelonAsiatique;
 import model.agents.animaux.FrelonEuropeen;
@@ -30,18 +35,17 @@ public class Ruche extends Decor implements Hebergeur{
 	public boolean peutAccueillir(Animal a) {
 		//TODO: Penser a mettre en private
 		if (this.acceptable.contains(a.getClass()) && this.population.size() < populationMax) {
-			System.out.println("Peut etre accueuillit");
+			System.out.println("Peut etre accueillit");
 			return true;
 		}
-		System.out.println("Ne peut etre accueuillit");
+		System.out.println("Ne peut etre accueillit");
 		return false;
 	}
 
 	@Override
 	public boolean accueillir(Animal a) {
 		if(peutAccueillir(a)) {
-			/* 
-			 * Ne pas faire ca ici: c'est a l'animal de mettre a jour ses attributs
+			/* Ne pas faire ca ici: c'est a l'animal de mettre a jour ses attributs
 			 * a.setHebergeur(this);
 			 */
 			this.population.add(a);
@@ -53,21 +57,10 @@ public class Ruche extends Decor implements Hebergeur{
 	@Override
 	public String toString() {
 		String ret ="Ruche (" + this.getCoord().getX() + ", " + this.getCoord().getY() + ") population: "
-					+ Integer.toString(this.population.size()) + " abeilles" ;
-		for (int i = 0; i < this.population.size(); i++)
-			ret += "*" + this.population;
+					+ Integer.toString(this.population.size()) + " abeilles\n" ;
+		Iterator<Animal> it = this.population.iterator();
+		while(it.hasNext())
+			ret += "*" + it.next() + "\n";
 		return ret;
-	}
-	
-	public static void main(String[] a) {
-		/*
-		Ruche r = new Ruche(new Point(0,0));
-		new AbeilleDomestique(Sexe.Assexue, new Point(10,20),r);
-		System.out.println(r);
-		new AbeilleDomestique(Sexe.Assexue, new Point(10,20),r);
-		System.out.println(r);
-		new AbeilleDomestique(Sexe.Femelle, new Point(5,10),r);
-		System.out.println(r);
-		*/
 	}
 }

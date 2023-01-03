@@ -2,6 +2,7 @@ package model.agents.vegetaux;
 
 import java.awt.Point;
 
+import model.agents.Agent;
 import model.agents.Animal;
 import model.agents.animaux.AbeilleSolitaire;
 import model.agents.animaux.Frelon;
@@ -39,6 +40,12 @@ public class Arbre extends Vegetal implements Hebergeur{
 	@Override
 	public void produire() {
 		qteNectar += Math.pow(2, taille);		
+	}
+
+	@Override
+	public int compareTo(Agent o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

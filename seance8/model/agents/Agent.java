@@ -5,15 +5,15 @@ import java.awt.Point;
 import model.comportements.Deplacable;
 
 /**
- * Cette classe modélise un Agent, c'est à dire un élément du monde qui est vivant ET 
- * qui peut interagir avec d'autres éléments de manière réciproque
+ * Cette classe modelise un Agent, c'est a dire un element du monde qui est vivant ET 
+ * qui peut interagir avec d'autres elements de maniere reciproque
  * Par exemple, une Abeille (qui butine une fleur) est un Agent
- * Une Fleur (qui produit et donne du nectar ou du pollen à une Abeille) est un Agent.
+ * Une Fleur (qui produit et donne du nectar ou du pollen a une Abeille) est un Agent.
  * Une ruche, en revanche, n'est pas un agent (elle n'est pas vivante, elle ne produit rien).
  * @author bruno
  *
  */
-public abstract class Agent {//implements Cloneable, Comparable<Agent>
+public abstract class Agent implements Comparable<Agent>{//implements Cloneable
 	
 	/* attributs de classe */
 	private static int currentId = 0;
@@ -21,14 +21,14 @@ public abstract class Agent {//implements Cloneable, Comparable<Agent>
 	/* attributs d'instance*/
 	/** identifiant unique de l'animal*/
 	private int id;
-	/** age en unité de temps*/
+	/** age en unite de temps*/
 	protected int age;
 	/** position sur la carte*/
 	//protected PointPositif coord;
 	protected Point coord;
 	
 	/**
-	 * faim (booléen pour le moment)
+	 * faim (booleen pour le moment)
 	 */
 	protected boolean faim = false;
 	
@@ -36,15 +36,15 @@ public abstract class Agent {//implements Cloneable, Comparable<Agent>
 	public boolean isFaim() { return faim; }
 
 	/**
-	 * crée un agent d'age 0, avec un id unique à la position coord
+	 * cree un agent d'age 0, avec un id unique a la position coord
 	 * @param coord position de l'agent
 	 */
 	public Agent(Point coord) {
 		age = 0;
 		id = Agent.getUniqueId();
-		//à commenter partie 3 
+		//a commenter partie 3 
 		this.coord=coord;
-		//à décommenter partie 3 
+		//a decommenter partie 3 
 		//this.coord=new PointPositif(coord);
 	}
 	/**
@@ -71,8 +71,8 @@ public abstract class Agent {//implements Cloneable, Comparable<Agent>
 	public boolean aFaim() {return faim;}
 	
 	/**
-	 * renvoie un clone de la position (la position de l'agent ne sera pas modifiable par l'intermédiaire de 
-	 * l'objet renvoyé
+	 * renvoie un clone de la position (la position de l'agent ne sera pas modifiable par l'intermediaire de 
+	 * l'objet renvoye
 	 * @return un clone de {@link #coord}
 	 */
 	/* partie 1 */
@@ -90,7 +90,7 @@ public abstract class Agent {//implements Cloneable, Comparable<Agent>
 	*/
 	
 	/**
-	 * age doit être un entier positif
+	 * age doit etre un entier positif
 	 * @param a
 	 * @return true si age positif
 	 */
@@ -104,7 +104,7 @@ public abstract class Agent {//implements Cloneable, Comparable<Agent>
 	}
 	
 	/**
-	 * x et y doivent être positifs pour être pris en compte
+	 * x et y doivent etre positifs pour etre pris en compte
 	 * @param x
 	 * @param y
 	 */
@@ -117,7 +117,7 @@ public abstract class Agent {//implements Cloneable, Comparable<Agent>
 	}
 	
 	/**
-	 * fait vieillir l'agent d'une unité de temps
+	 * fait vieillir l'agent d'une unite de temps
 	 */
 	public void vieillir() {
 		setAge(age+1);
@@ -125,7 +125,7 @@ public abstract class Agent {//implements Cloneable, Comparable<Agent>
 	
 	/**
 	 * algo qui traite la rencontre de l'agent avec un autre agent
-	 * dépend du type des agents impliqués
+	 * depend du type des agents impliques
 	 * @param a
 	 */
 	public abstract void rencontrer(Agent a); 
@@ -185,7 +185,7 @@ public abstract class Agent {//implements Cloneable, Comparable<Agent>
 
 	/* comportements de classe */ 
 	/**
-	 * Renvoie un identifiant unique non encore utilisé
+	 * Renvoie un identifiant unique non encore utilise
 	 * @return un identifiant entier unique d'animal
 	 */
 	private static int getUniqueId() {

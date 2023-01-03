@@ -31,7 +31,7 @@ public abstract class Vegetal extends Agent {
 		
 	}
 	/**
-	 * Si il reste du nectar, renvoie 1 et diminue la quantité disponible
+	 * Si il reste du nectar, renvoie 1 et diminue la quantite disponible
 	 * Renvoie 0 sinon
 	 * @return
 	 */

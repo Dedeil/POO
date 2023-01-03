@@ -2,24 +2,23 @@ package launchers;
 
 import java.awt.Point;
 
-import model.agents.Agent;
 import model.agents.Sexe;
 import model.agents.animaux.AbeilleDomestique;
 import model.agents.animaux.FrelonAsiatique;
 import model.agents.animaux.FrelonEuropeen;
 import model.agents.animaux.Varroa;
 import model.decor.Ruche;
-//import model.world.Monde;
+import model.world.Monde;
 
 public class Launcher8 {
 
 	public static void main(String[] args) {
-		//Monde m = new Monde(50);
-		//System.out.println(m);
+		Monde m = new Monde(50);
+		System.out.println(m);
 		//m.cycle();
 		//System.out.println(m);
 	
-		int nbAbeilles = 42;
+		int nbAbeilles = 5;
 	
 		Ruche ruche = new Ruche(new Point());
 		Varroa varroa = new Varroa(Sexe.Femelle, new Point());
@@ -36,6 +35,7 @@ public class Launcher8 {
 		ruche.peutAccueillir(frelonasiatique);
 		ruche.peutAccueillir(freloneuropeen);
 		
-		System.out.println(ruche.toString());
+		String trukaprint = ruche.toString();
+		System.out.println(trukaprint);
 	}
 }

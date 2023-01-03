@@ -7,7 +7,7 @@ import java.awt.Point;
 
 public abstract class Decor{
 	/**
-	 * coordonnées de l'élément de décor
+	 * coordonnees de l'element de decor
 	 */
 	//partie 2
 	//private PointPositif coord;
